@@ -1,0 +1,17 @@
+{
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "contentscript.js" ],
+      "matches": [ "http://*.polygon.com/*", "https://*.polygon.com/*" ]
+   } ],
+   "icons": {
+      "128": "reviewomizer128.png",
+      "16": "reviewomizer16.png",
+      "48": "reviewomizer48.png"
+   },
+   "manifest_version": 2,
+   "name": "Reviewomizer",
+   "permissions": [ "http://*.polygon.com/*", "https://*.polygon.com/*" ],
+   "version": "0.0.0.31",
+   "web_accessible_resources": [ "randomscores.js" ]
+}
