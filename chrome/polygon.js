@@ -1,4 +1,7 @@
 //Polygon review score randomizer
+//TODO:
+// - Closure/Self-executing function?
+// - Track state in boolean / Catch intervalID so behavior can be toggled
 
 var scoreRadials = $('div.review_meta > div.review_score, .review_score > em.score'),
     scoreLabels = $('div.score > strong'),
@@ -10,7 +13,7 @@ function makeScoreString(score) {
   return scoreString;
 }
 
-function randomizeScores() {
+function randomizePolygon() {
   $(scoreRadials).each(function (i) {
     var lastClassIndex = this.classList.length-1,
         lastClass = this.classList[lastClassIndex],
@@ -24,5 +27,5 @@ function randomizeScores() {
   });
 }
 
-randomizeScores();
-setInterval(randomizeScores, 60000*5); //randomize scores every 5 minutes
+randomizePolygon();
+setInterval(randomizePolygon, 60000*5); //randomize scores every 5 minutes
