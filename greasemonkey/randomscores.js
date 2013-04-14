@@ -145,7 +145,11 @@ else if (metacriticRE.test(document.location.href)) {
   var setDefaultAvguserscore = function setDefaultAvguserscore() {
     return setScoreValue($(this), "avguser");
   };
-  
+
+  var setDefaultTextscore = function setDefaultTextscore() {
+    return setScoreValue($(this), "text");
+  };
+
   var randomizeMetacritic = function randomizeMetacritic() {
     var defaultMetascoreSelector = "span.data.metascore, div.data.metascore, li.product .data.metascore",
         summaryMetascoreSelector = ".score_summary.metascore_summary", //big number at top
@@ -154,6 +158,7 @@ else if (metacriticRE.test(document.location.href)) {
         defaultUserscoreSelector = ".review_grade.userscore, .data.userscore",
         defaultCritscoreSelector = ".review_grade.critscore, .data.critscore",
         defaultAvguserscoreSelector = ".data.avguserscore",
+        defaultTextscoreSelector = ".data.textscore",
         removalSelector = ".score_counts, .review_helpful, .summary";
     
     $(removalSelector).remove();
@@ -165,6 +170,7 @@ else if (metacriticRE.test(document.location.href)) {
     $(defaultUserscoreSelector).each(setDefaultUserscore);
     $(defaultCritscoreSelector).each(setDefaultCritscore);
     $(defaultAvguserscoreSelector).each(setDefaultAvguserscore);
+    $(defaultTextscoreSelector).each(setDefaultTextscore);
   };
   
   randomizeMetacritic();
