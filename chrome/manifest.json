@@ -2,7 +2,7 @@
    "content_scripts": [ {
       "all_frames": true,
       "js": [ "contentscript.js" ],
-      "matches": [ "http://*.polygon.com/*", "https://*.polygon.com/*" ]
+      "matches": [ "http://*.polygon.com/*", "https://*.polygon.com/*", "http://*.metacritic.com/*", "https://*.metacritic.com/*" ]
    } ],
    "icons": {
       "128": "reviewomizer128.png",
@@ -11,7 +11,7 @@
    },
    "manifest_version": 2,
    "name": "Reviewomizer",
-   "permissions": [ "http://*.polygon.com/*", "https://*.polygon.com/*" ],
-   "version": "0.0.0.31",
-   "web_accessible_resources": [ "randomscores.js" ]
+   "permissions": [ "http://*.polygon.com/*", "https://*.polygon.com/*", "http://*.metacritic.com/*", "https://*.metacritic.com/*" ],
+   "version": "0.0.0.40",
+   "web_accessible_resources": [ "polygon.js", "metacritic.js" ]
 }
