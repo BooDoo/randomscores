@@ -284,12 +284,21 @@
     target.innerHTML = newHtml;
   }
 
+  //Randomize Eurogamer
+  function doEurogamer($) {
+    var target = $('big[property="v\:value"]')[0]
+      , newScore = getRandomScore(1,10);
+    
+    if (target)
+      {target.textContent = newScore;}
+  }
+
   //EXECUTION ENTRYPOINT
   var sites = [
         //{"url": "ign.com", "func": doIGN},
         //{"url": "joystiq.com", "func": doJoystiq},
         {"url": "usgamer.net", "func": doUSGamer},
-        //{"url": "eurogamer.net", "func": doEurogamer},
+        {"url": "eurogamer.net", "func": doEurogamer},
         //{"url": "gamespot.com", "func": doGamespot},
         //{"url": "escapistmagazine.com", "func": doEscapist},
         //{"url": "gameinformer.com", "func": doGameInformer},
