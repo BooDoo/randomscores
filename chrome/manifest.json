@@ -10,12 +10,12 @@
       ]
    } ],
    "icons": {
-      "128": "reviewomizer128.png",
-      "16": "reviewomizer16.png",
-      "48": "reviewomizer48.png"
+      "128": "reviewnomizer128.png",
+      "16": "reviewnomizer16.png",
+      "48": "reviewnomizer48.png"
    },
    "manifest_version": 2,
-   "name": "Reviewomizer",
+   "name": "Reviewnomizer",
    "permissions": [ 
      "http://*.polygon.com/*", "https://*.polygon.com/*",
      "http://*.metacritic.com/*", "https://*.metacritic.com/*",
