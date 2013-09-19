@@ -6,7 +6,10 @@
          "http://*.polygon.com/*", "https://*.polygon.com/*",
          "http://*.metacritic.com/*", "https://*.metacritic.com/*",
          "http://*.destructoid.com/*", "https://*.destructoid.com/*",
-         "http://*.giantbomb.com/*", "http://*.giantbomb.com/*"
+         "http://*.giantbomb.com/*", "http://*.giantbomb.com/*",
+         "http://*.joystiq.com/*", "https://*.joystiq.com/*",
+         "http://*.usgamer.net/*", "https://*.usgamer.net/*",
+         "http://*.eurogamer.net/*", "https://*.eurogamer.net/*"
       ]
    } ],
    "icons": {
@@ -20,8 +23,11 @@
      "http://*.polygon.com/*", "https://*.polygon.com/*",
      "http://*.metacritic.com/*", "https://*.metacritic.com/*",
      "http://*.destructoid.com/*", "https://*.destructoid.com/*",
-     "http://*.giantbomb.com/*", "http://*.giantbomb.com/*"
+     "http://*.giantbomb.com/*", "http://*.giantbomb.com/*",
+     "http://*.joystiq.com/*", "https://*.joystiq.com/*",
+     "http://*.usgamer.net/*", "https://*.usgamer.net/*",
+     "http://*.eurogamer.net/*", "https://*.eurogamer.net/*"
    ],
-   "version": "0.0.0.50",
+   "version": "0.0.0.55",
    "web_accessible_resources": [ "reviewnomizer.js" ]
 }
