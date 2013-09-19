@@ -264,11 +264,31 @@
     });
   }
 
+  //Randomize USGamer
+  function doUSGamer($) {
+    var target = $('.ratings .score')[0]
+      , newScore = getRandomScore(0,5,.5)
+      , newHtml = '\n';
+      
+    while (newScore > 0) {
+      if (newScore >= 1) {
+        newHtml += '<span class="icon-star empty"></span>\n';
+        newScore -= 1;
+      }
+      else {
+        newHtml += '<span class="icon-star-half empty"></span>\n';
+        newScore -= 0.5;
+      }
+    }
+    
+    target.innerHTML = newHtml;
+  }
+
   //EXECUTION ENTRYPOINT
   var sites = [
         //{"url": "ign.com", "func": doIGN},
         //{"url": "joystiq.com", "func": doJoystiq},
-        //{"url": "usgamer.net", "func": doUSGamer},
+        {"url": "usgamer.net", "func": doUSGamer},
         //{"url": "eurogamer.net", "func": doEurogamer},
         //{"url": "gamespot.com", "func": doGamespot},
         //{"url": "escapistmagazine.com", "func": doEscapist},
@@ -278,7 +298,8 @@
         {"url": "giantbomb.com", "func": doGiantbomb},
         {"url": "destructoid.com", "func": doDestructoid}
       ]
-    , selector = jQuery || document.querySelectorAll || $$ || $ //be smarter?
+    , jQuery = jQuery || null
+    , selector = jQuery || document.querySelectorAll.bind(document) || $$ || $ //be smarter?
     , site
     , intervalId;
 
