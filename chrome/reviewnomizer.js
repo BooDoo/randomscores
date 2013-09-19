@@ -293,10 +293,39 @@
       {target.textContent = newScore;}
   }
 
+  //Randomize Joystiq
+  function doJoystiq($) {
+    var images = $('.post-body img')
+      , image = images[images.length-1]
+      , newScore = getRandomScore(0,5,.5)
+      , imgUrl = target.src
+      , staticEndIndex =  imgUrl.search(/review-/i)
+      , static = imgUrl.substring(0,staticEndIndex)
+      , fileEndIndex = imgUrl.indexOf('.', staticEndIndex)
+      , file = imgUrl.substring(staticEndIndex, fileEndIndex)
+      , suffix = imgUrl.substring(fileEndIndex, imgUrl.length)
+      , files = {
+          "0": "review-no-stars",
+          "0.5": "review-one-star",
+          "1": "review-one-star",
+          "1.5": "review-one-half-stars",
+          "2": "review-two-stars",
+          "2.5": "review-two-half-stars",
+          "3": "review-three-stars",
+          "3.5": "review-three-half-stars",
+          "4": "review-four-stars",
+          "4.5": "review-four-half-stars",
+          "5": "review-five-stars"
+        }
+        , newUrl = static+files[newScore]+suffix;
+        
+        target.src = newUrl;
+  }
+
   //EXECUTION ENTRYPOINT
   var sites = [
         //{"url": "ign.com", "func": doIGN},
-        //{"url": "joystiq.com", "func": doJoystiq},
+        {"url": "joystiq.com", "func": doJoystiq},
         {"url": "usgamer.net", "func": doUSGamer},
         {"url": "eurogamer.net", "func": doEurogamer},
         //{"url": "gamespot.com", "func": doGamespot},
