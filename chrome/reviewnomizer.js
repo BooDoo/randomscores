@@ -359,6 +359,36 @@
         target.src = newUrl;
   }
 
+  //Randomize Escapist
+  // TODO: Is half star URL wrong, or just because I'm on the train?
+  function doEscapist($) {
+    
+    var target   = $('.rating_tag')[0]
+      , newScore = getRandomScore(0,5,.5)
+      , starOff  = {src:"http://cdn.themis-media.com/media/global/images/icons/reviewstar_off.png" , class:"rating_tag_0"}
+      , starHalf = {src:"http://cdn.themis-media.com/media/global/images/icons/reviewstar_half.png", class:"rating_tag_half"} //not working?
+      , starOn   = {src:"http://cdn.themis-media.com/media/global/images/icons/reviewstar_on.png"  , class:"rating_tag_1"}
+      , newHTML  = ''
+      , n;
+   
+    for (n = 5; target && n > 0; n--) {
+      if (newScore >= 1) {
+        newHTML += '<img src="' + starOn.src + '" class="' + starOn.class + '">';
+        newScore -= 1;
+      }
+      else if (newScore >= .5) {
+        newHTML += '<img src="' + starHalf.src + '" class="' + starHalf.class + '">';
+        newScore -= .5;
+      }
+      else {
+        newHTML += '<img src="' + starOff.src + '" class="' + starOff.class + '">';
+      }
+    }
+    
+    target.innerHTML = newHTML;
+    
+  }
+
   //EXECUTION ENTRYPOINT
   jQuery = jQuery || null;
   
@@ -368,7 +398,7 @@
         {"url": "usgamer.net", "func": doUSGamer},
         {"url": "eurogamer.net", "func": doEurogamer},
         //{"url": "gamespot.com", "func": doGamespot},
-        //{"url": "escapistmagazine.com", "func": doEscapist},
+        {"url": "escapistmagazine.com", "func": doEscapist},
         //{"url": "gameinformer.com", "func": doGameInformer},
         {"url": "polygon.com", "func": doPolygon},
         {"url": "metacritic.com", "func": doMetacritic},
