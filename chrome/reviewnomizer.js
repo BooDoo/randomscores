@@ -53,19 +53,56 @@
   }
   
   //Randomize IGN
-  //TODO: Adjust values for (and determine labels per score) for:
-  //$(".rating .score.value"), $(".score-text"),
-  //$("scoreBox-scoreLink"), $("scoreBox-descriptionLink"), 
-  //$(".ignRating .rating-value"), $(".ignRating .rating-text"),
-  //$(".communityRating .rating-value"), $(".communityRating .rating-text")
   function doIGN($) {
-    var mainTarget = $('.score.value')[0]
-      , newScore = getRandomScore(0,10,.1);
-      //, targets = 
+    var breakdown = $('.breakdown-box-body')[0]
+      , scoreBoxes = $('.scoreBox')
+      , ratingRows = $('.ratingRow')
+      , phrases = 
+        [
+          "Disaster",
+          "Unbearable",
+          "Painful",
+          "Awful",
+          "Bad",
+          "Mediocre",
+          "OK",
+          "Good",
+          "Great",
+          "Amazing",
+          "Masterpiece"
+        ]
+      , bigScore = getRandomScore(0,10,.1)
+      , bigPhrase = phrases[Math.floor(bigScore)];
     
-    if (mainTarget) 
-      {mainTarget.textContent = newScore;}
+    $('.editorsChoice').hide();
+    
+    if (breakdown) {
+      $('.score.value').text(bigScore);
+      $('.score-text').text(bigPhrase);
+    }
+    
+    Array.prototype.forEach.call(scoreBoxes, function(el) {
+      var newScore = getRandomScore(0,10,.1)
+        , newPhrase = phrases[Math.floor(newScore)];
+        
+      $('.scoreBox-score', el).text(newScore);
+      $('.scoreBox-scorePhrase', el).text(newPhrase);
+    });
+    
+    Array.prototype.forEach.call(ratingRows, function(el) {
+      var newScore = getRandomScore(0,10,.1)
+        , newPhrase = phrases[Math.floor(newScore)]
+        , sliderPos = (newScore * 25) - 5;;
       
+      $('.ratingValue',el).text(newScore)
+      $('.ratingText',el).text(newPhrase)
+      
+      if ($(el).hasClass('userRating')) {
+        $('.ratings-scrubber-fill').css('width', sliderPos);
+        $('.ratings-scrubber-slider').css('left', sliderPos);
+      }
+    })
+    
   }
   
   //Randomize MetaCritic
@@ -323,8 +360,10 @@
   }
 
   //EXECUTION ENTRYPOINT
+  jQuery = jQuery || null;
+  
   var sites = [
-        //{"url": "ign.com", "func": doIGN},
+        {"url": "ign.com", "func": doIGN},
         {"url": "joystiq.com", "func": doJoystiq},
         {"url": "usgamer.net", "func": doUSGamer},
         {"url": "eurogamer.net", "func": doEurogamer},
@@ -336,7 +375,6 @@
         {"url": "giantbomb.com", "func": doGiantbomb},
         {"url": "destructoid.com", "func": doDestructoid}
       ]
-    , jQuery = jQuery || null
     , selector = jQuery || document.querySelectorAll.bind(document) || $$ || $ //be smarter?
     , site
     , intervalId;
@@ -352,4 +390,4 @@
       site.func(selector); //randomize now
       intervalId = setInterval(site.func, 60000*5, selector); //randomize scores every 5 minutes
     }
-})();
+})(jQuery);
