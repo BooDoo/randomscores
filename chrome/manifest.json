@@ -9,7 +9,11 @@
          "http://*.giantbomb.com/*", "http://*.giantbomb.com/*",
          "http://*.joystiq.com/*", "https://*.joystiq.com/*",
          "http://*.usgamer.net/*", "https://*.usgamer.net/*",
-         "http://*.eurogamer.net/*", "https://*.eurogamer.net/*"
+         "http://*.eurogamer.net/*", "https://*.eurogamer.net/*",
+         "http://*.ign.com/*", "https://*.ign.com/*",
+         "http://*.escapistmagazine.com/*", "https://*.escapistmagazine.com/*",
+         "http://*.gameinformer.com/*", "https://*.gameinformer.com/*",
+         "http://*.gamespot.com/*", "https://*.gamespot.com/*"
       ]
    } ],
    "icons": {
@@ -20,14 +24,18 @@
    "manifest_version": 2,
    "name": "Reviewnomizer",
    "permissions": [ 
-     "http://*.polygon.com/*", "https://*.polygon.com/*",
-     "http://*.metacritic.com/*", "https://*.metacritic.com/*",
-     "http://*.destructoid.com/*", "https://*.destructoid.com/*",
-     "http://*.giantbomb.com/*", "http://*.giantbomb.com/*",
-     "http://*.joystiq.com/*", "https://*.joystiq.com/*",
-     "http://*.usgamer.net/*", "https://*.usgamer.net/*",
-     "http://*.eurogamer.net/*", "https://*.eurogamer.net/*"
+       "http://*.polygon.com/*", "https://*.polygon.com/*",
+       "http://*.metacritic.com/*", "https://*.metacritic.com/*",
+       "http://*.destructoid.com/*", "https://*.destructoid.com/*",
+       "http://*.giantbomb.com/*", "http://*.giantbomb.com/*",
+       "http://*.joystiq.com/*", "https://*.joystiq.com/*",
+       "http://*.usgamer.net/*", "https://*.usgamer.net/*",
+       "http://*.eurogamer.net/*", "https://*.eurogamer.net/*",
+       "http://*.ign.com/*", "https://*.ign.com/*",
+       "http://*.escapistmagazine.com/*", "https://*.escapistmagazine.com/*",
+       "http://*.gameinformer.com/*", "https://*.gameinformer.com/*",
+       "http://*.gamespot.com/*", "https://*.gamespot.com/*"
    ],
-   "version": "0.0.0.55",
+   "version": "0.0.0.90",
    "web_accessible_resources": [ "reviewnomizer.js" ]
 }
