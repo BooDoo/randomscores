@@ -25,8 +25,8 @@
     }
     
     if (tail && score % 1 === 0) {
-      score = score + '.0'
-    }    
+      score = score + '.' + Array(tail+1).join('0');
+    }
     
     return score;
   }
@@ -389,6 +389,40 @@
     
   }
 
+  //Randomize Gameinformer
+  // TODO:
+  // ? Override "login" label on your-rating? Or don't touch your-score?
+  function doGameinformer($) {
+    var targets = $('.sku-rating');
+    
+    $('.sku-award').hide();
+    
+    Array.prototype.forEach.call(targets, function(target, n) {
+      var newScore = getRandomScore(0,10,.25);
+
+      $('.sku-rating-summary > span', target).text(newScore);
+      $('.sku-rating-bars > div', target).html(makeBarsGI(newScore));
+    });
+    
+    function makeBarsGI(newScore) {
+      var html = '';
+
+      for (n = 0; n < 40; n += 1) {
+        var quarter = n % 4
+          , scoreEq = (n+1) / 4
+          , margin = quarter * -5
+          , isFull = (scoreEq <= newScore) ? 'ui-stars-star-on ' : '';
+        html += '<div class="ui-stars-star '
+                + isFull
+                + 'ui-stars-star-disabled" style="width: 5px;"><a title="" style="margin-left:' + margin + 'px;">'
+                + Math.floor(scoreEq) + ['.25','.50','.75','.00'][quarter] + '</a></div>\n';
+
+      }
+
+      return html;
+    }
+  }
+
   //EXECUTION ENTRYPOINT
   jQuery = jQuery || null;
   
@@ -399,7 +433,7 @@
         {"url": "eurogamer.net", "func": doEurogamer},
         //{"url": "gamespot.com", "func": doGamespot},
         {"url": "escapistmagazine.com", "func": doEscapist},
-        //{"url": "gameinformer.com", "func": doGameInformer},
+        {"url": "gameinformer.com", "func": doGameinformer},
         {"url": "polygon.com", "func": doPolygon},
         {"url": "metacritic.com", "func": doMetacritic},
         {"url": "giantbomb.com", "func": doGiantbomb},
