@@ -360,7 +360,6 @@
   }
 
   //Randomize Escapist
-  // TODO: Is half star URL wrong, or just because I'm on the train?
   function doEscapist($) {
     
     var target   = $('.rating_tag')[0]
@@ -423,15 +422,67 @@
     }
   }
 
+//Randomize Gamespot
+// TODO:
+//  Is "Editor's Choice" score-based? Does anything else possibly go there?
+//  Do I need to change text color based on score?
+//  Is the scale 0-10 at .1 increments?
+  function doGamespot($) {
+    var targets = $('span[itemprop="ratingValue"], .viewerScore .score > .data, .community_score > .wrap > .data')
+      , metaScore = $('.data > .scoreWrap')[0]
+      , metaWrap = $('.criticScore > .wrap')[0]
+      , metaClass = "wrap "
+      , newMetaScore = getRandomScore(0,100);
+    
+    Array.prototype.forEach.call($('.scoreword.choice'), function(el) {
+      el.style.display = "none"
+    });
+    
+    Array.prototype.forEach.call(targets, function(target) {
+      var newScore = getRandomScore(0,10,.1,true);
+      if (newScore === "10.0" || newScore === "0.0")
+        newScore = newScore.substr(0,newScore.indexOf('.'));
+        
+      target.textContent = newScore;
+      
+      if (target.previousElementSibling && target.previousElementSibling.textContent === "Your Score") {
+        var scaleStatus = $('.scale_status')[0]
+          , scaleScore = newScore*10;
+          
+        if (scaleStatus) {
+          scaleStatus.style.width = scaleScore + "px";
+          $('.handle')[0].style.left = (scaleScore - 10) + "px";
+        }
+      }
+    });
+    
+    if (metaScore && metaWrap) {
+      metaScore.textContent = newMetaScore;
+      
+      if (newMetaScore < 41) {
+        metaClass += "terrible";
+      }
+      else if (newMetaScore < 62) {
+        metaClass += "mixed";
+      }
+      else if (newMetaScore < 81) {
+        metaClass += "favorable";
+      }
+      else {
+        metaClass += "outstanding";
+      }
+      
+      metaWrap.className = metaClass;
+    }
+  }
+
   //EXECUTION ENTRYPOINT
-  jQuery = jQuery || null;
-  
   var sites = [
         {"url": "ign.com", "func": doIGN},
         {"url": "joystiq.com", "func": doJoystiq},
         {"url": "usgamer.net", "func": doUSGamer},
         {"url": "eurogamer.net", "func": doEurogamer},
-        //{"url": "gamespot.com", "func": doGamespot},
+        {"url": "gamespot.com", "func": doGamespot},
         {"url": "escapistmagazine.com", "func": doEscapist},
         {"url": "gameinformer.com", "func": doGameinformer},
         {"url": "polygon.com", "func": doPolygon},
@@ -439,9 +490,19 @@
         {"url": "giantbomb.com", "func": doGiantbomb},
         {"url": "destructoid.com", "func": doDestructoid}
       ]
-    , selector = jQuery || document.querySelectorAll.bind(document) || $$ || $ //be smarter?
+    , selector
     , site
     , intervalId;
+
+    if ('jQuery' in this) {
+      selector = this.jQuery;
+    }
+    else if ('querySelectorAll' in document) {
+      selector = document.querySelectorAll.bind(document);
+    }
+    else {
+     selector = $$ || $;
+   }
 
     //Assign when initialized using .reduce()?
     sites.forEach(function(el,n) {  
@@ -454,4 +515,4 @@
       site.func(selector); //randomize now
       intervalId = setInterval(site.func, 60000*5, selector); //randomize scores every 5 minutes
     }
-})(jQuery);
+})();
