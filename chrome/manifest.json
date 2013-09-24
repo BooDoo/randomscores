@@ -13,7 +13,8 @@
          "http://*.ign.com/*", "https://*.ign.com/*",
          "http://*.escapistmagazine.com/*", "https://*.escapistmagazine.com/*",
          "http://*.gameinformer.com/*", "https://*.gameinformer.com/*",
-         "http://*.gamespot.com/*", "https://*.gamespot.com/*"
+         "http://*.gamespot.com/*", "https://*.gamespot.com/*",
+         "http://*.edge-online.com/*", "https://*.edge-online.com/*"
       ]
    } ],
    "icons": {
@@ -34,7 +35,8 @@
        "http://*.ign.com/*", "https://*.ign.com/*",
        "http://*.escapistmagazine.com/*", "https://*.escapistmagazine.com/*",
        "http://*.gameinformer.com/*", "https://*.gameinformer.com/*",
-       "http://*.gamespot.com/*", "https://*.gamespot.com/*"
+       "http://*.gamespot.com/*", "https://*.gamespot.com/*",
+       "http://*.edge-online.com/*", "https://*.edge-online.com/*"
    ],
    "version": "0.0.0.90",
    "web_accessible_resources": [ "reviewnomizer.js" ]

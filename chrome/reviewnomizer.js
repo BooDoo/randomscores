@@ -7,7 +7,7 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   
-  //Make score within (inclusive) min, max range [increment by decimal value, force trailing 0]
+  //Make score within (inclusive) min, max range [increment by decimal value, force trailing 0(s)]
   function getRandomScore(min, max, step, tail) {
     if (typeof min !== "number")
       {min = 0;}
@@ -422,12 +422,12 @@
     }
   }
 
-//Randomize Gamespot
-// TODO:
-//  - Get and apply labels for ".scoreword" element.
-//  - Randomize scores on review index page ('.value'...)
-//  Do I need to change text color based on score?
-//  Is the scale 0-10 at .1 increments?
+  //Randomize Gamespot
+  // TODO:
+  //  - Get and apply labels for ".scoreword" element.
+  //  - Randomize scores on review index page ('.value'...)
+  //  - Do I need to change text color based on score?
+  //  - Is the scale 0-10 at .1 increments?
   function doGamespot($) {
     var targets = $('span[itemprop="ratingValue"], .viewerScore .score > .data, .community_score > .wrap > .data, span.gameScore > span.value, div.review span.data')
       , metaScore = $('.data > .scoreWrap')[0]
@@ -477,6 +477,17 @@
     }
   }
 
+  //Randomize EDGE
+  // TODO:
+  function doEdge($) {
+    var targets = $('#verdictBoxScore, td.score');
+
+    Array.prototype.forEach.call(targets, function(target) {
+      var newScore = getRandomScore(0,10);
+      target.textContent = newScore;
+    });
+  }
+
   //EXECUTION ENTRYPOINT
   var sites = [
         {"url": "ign.com", "func": doIGN},
@@ -489,6 +500,7 @@
         {"url": "polygon.com", "func": doPolygon},
         {"url": "metacritic.com", "func": doMetacritic},
         {"url": "giantbomb.com", "func": doGiantbomb},
+        {"url": "edge-online.com", "func": doEdge},
         {"url": "destructoid.com", "func": doDestructoid}
       ]
     , selector
