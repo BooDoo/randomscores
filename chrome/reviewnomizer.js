@@ -424,11 +424,12 @@
 
 //Randomize Gamespot
 // TODO:
-//  Is "Editor's Choice" score-based? Does anything else possibly go there?
+//  - Get and apply labels for ".scoreword" element.
+//  - Randomize scores on review index page ('.value'...)
 //  Do I need to change text color based on score?
 //  Is the scale 0-10 at .1 increments?
   function doGamespot($) {
-    var targets = $('span[itemprop="ratingValue"], .viewerScore .score > .data, .community_score > .wrap > .data')
+    var targets = $('span[itemprop="ratingValue"], .viewerScore .score > .data, .community_score > .wrap > .data, span.gameScore > span.value, div.review span.data')
       , metaScore = $('.data > .scoreWrap')[0]
       , metaWrap = $('.criticScore > .wrap')[0]
       , metaClass = "wrap "
