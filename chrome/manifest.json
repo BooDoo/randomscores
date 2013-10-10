@@ -39,5 +39,5 @@
        "http://*.edge-online.com/*", "https://*.edge-online.com/*"
    ],
    "version": "0.0.0.90",
-   "web_accessible_resources": [ "reviewnomizer.js" ]
+   "web_accessible_resources": [ "reviewnomizer.min.js" ]
 }

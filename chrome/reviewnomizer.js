@@ -424,57 +424,43 @@
 
   //Randomize Gamespot
   // TODO:
-  //  - Get and apply labels for ".scoreword" element.
-  //  - Randomize scores on review index page ('.value'...)
-  //  - Do I need to change text color based on score?
-  //  - Is the scale 0-10 at .1 increments?
+  // - Score distribution bars for user reviews (see: http://www.gamespot.com/bioshock-infinite/reviews/)
+  // - score_word instances on pages like the one above
   function doGamespot($) {
-    var targets = $('span[itemprop="ratingValue"], .viewerScore .score > .data, .community_score > .wrap > .data, span.gameScore > span.value, div.review span.data')
-      , metaScore = $('.data > .scoreWrap')[0]
-      , metaWrap = $('.criticScore > .wrap')[0]
-      , metaClass = "wrap "
-      , newMetaScore = getRandomScore(0,100);
-    
-    Array.prototype.forEach.call($('.scoreword.choice'), function(el) {
-      el.style.display = "none"
+    var newTargets = $('.gs-score__cell')
+      , animateClasses = ['score-0', 'score-1', 'score-2', 'score-3', 'score-4', 'score-5', 'score-6', 'score-7', 'score-8', 'score-9', 'score-10']
+      , scoreWords = ['GARBAGE', 'ABYSMAL', 'TERRIBLE', 'BAD', 'POOR', 'MEDIOCRE', 'FAIR', 'GOOD', 'GREAT', 'SUPERB', 'PRIME']
+      , legacyBoxes = $('.media-type-review > strong')
+      , userCircles = $('dl.gamespace-tierReview__userAvg > dd')
+      , metaCircles = $('dl.gamespace-tierReview__metacritic > dd');
+
+    Array.prototype.forEach.call(newTargets, function(el) {
+      var newScore = getRandomScore(0,10)
+        , scoreWord = $(el).closest('.breakdown-score').find('dd.score-word')[0];
+
+      el.textContent = newScore;
+      
+      $(el).closest('div[class*=gs-score--]')
+        .removeClass(animateClasses.join(' '))
+        .addClass(animateClasses[newScore]);
+
+      if (scoreWord) {scoreWord.textContent = scoreWords[newScore];}
     });
-    
-    Array.prototype.forEach.call(targets, function(target) {
-      var newScore = getRandomScore(0,10,.1,true);
-      if (newScore === "10.0" || newScore === "0.0")
-        newScore = newScore.substr(0,newScore.indexOf('.'));
-        
-      target.textContent = newScore;
-      
-      if (target.previousElementSibling && target.previousElementSibling.textContent === "Your Score") {
-        var scaleStatus = $('.scale_status')[0]
-          , scaleScore = newScore*10;
-          
-        if (scaleStatus) {
-          scaleStatus.style.width = scaleScore + "px";
-          $('.handle')[0].style.left = (scaleScore - 10) + "px";
-        }
-      }
+
+    Array.prototype.forEach.call(legacyBoxes, function(el) {
+      var newScore = getRandomScore(0,10,.5);
+      el.textContent = newScore;
     });
-    
-    if (metaScore && metaWrap) {
-      metaScore.textContent = newMetaScore;
-      
-      if (newMetaScore < 41) {
-        metaClass += "terrible";
-      }
-      else if (newMetaScore < 62) {
-        metaClass += "mixed";
-      }
-      else if (newMetaScore < 81) {
-        metaClass += "favorable";
-      }
-      else {
-        metaClass += "outstanding";
-      }
-      
-      metaWrap.className = metaClass;
-    }
+
+    Array.prototype.forEach.call(userCircles, function(el) {
+      var newScore = getRandomScore(0,10,.1,1);
+      el.textContent = newScore;
+    });
+
+    Array.prototype.forEach.call(metaCircles, function(el) {
+      var newScore = getRandomScore(0,100);
+      el.textContent = newScore;
+    });
   }
 
   //Randomize EDGE
